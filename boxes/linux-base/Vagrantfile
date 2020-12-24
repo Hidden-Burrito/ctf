@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+
+$initscript = <<-'SCRIPT'
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y --no-install-recommends ubuntu-desktop
+sudo apt-get install -y firefox leafpad
+sudo shutdown -h now
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+    vb.customize ['modifyvm', :id, '--vram', '80']
+  end
+
+  config.vm.provision 'shell', inline: $initscript
+
+  config.vm.synced_folder '../../', '/home/vagrant/Desktop/sync', owner: 'vagrant', group: 'vagrant'
+end
