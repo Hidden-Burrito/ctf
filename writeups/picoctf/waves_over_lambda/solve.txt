@@ -1,0 +1,20 @@
+Challenge:
+https://play.picoctf.org/practice/challenge/38?category=2&page=1
+
+This challenge asked me to run the following command:
+nc jupiter.challenges.picoctf.org 43522
+
+Which returned the following encrypted output:
+-------------------------------------------------------------------------------
+mtrxnvqf zcnc wf otgn idvx - incugcrmo_wf_m_tbcn_dvshyv_txisvgrnvi
+-------------------------------------------------------------------------------
+vdclco iotytntbwqmz pvnvsvetb avf qzc qzwny ftr ti iotytn jvbdtbwqmz pvnvsvetb, v dvry tarcn acdd prtar wr tgn ywfqnwmq wr zwf tar yvo, vry fqwdd ncscshcncy vstrx gf tawrx qt zwf xdttso vry qnvxwm ycvqz, azwmz zvjjcrcy qzwnqccr ocvnf vxt, vry azwmz w fzvdd ycfmnwhc wr wqf jntjcn jdvmc. itn qzc jncfcrq w awdd trdo fvo qzvq qzwf dvrytarcnitn ft ac gfcy qt mvdd zws, vdqztgxz zc zvnydo fjcrq v yvo ti zwf dwic tr zwf tar cfqvqcavf v fqnvrxc qojc, ocq trc jncqqo incugcrqdo qt hc scq awqz, v qojc vhkcmq vry bwmwtgf vry vq qzc fvsc qwsc fcrfcdcff. hgq zc avf trc ti qztfc fcrfcdcff jcnftrf azt vnc bcno acdd mvjvhdc ti dttpwrx viqcn qzcwn atndydo viivwnf, vry, vjjvncrqdo, viqcn rtqzwrx cdfc. iotytn jvbdtbwqmz, itn wrfqvrmc, hcxvr awqz rclq qt rtqzwrx; zwf cfqvqc avf ti qzc fsvddcfq; zc nvr qt ywrc vq tqzcn scr'f qvhdcf, vry ivfqcrcy tr qzcs vf v qtvyo, ocq vq zwf ycvqz wq vjjcvncy qzvq zc zvy v zgryncy qztgfvry ntghdcf wr zvny mvfz. vq qzc fvsc qwsc, zc avf vdd zwf dwic trc ti qzc stfq fcrfcdcff, ivrqvfqwmvd icddtaf wr qzc aztdc ywfqnwmq. w ncjcvq, wq avf rtq fqgjwywqoqzc svktnwqo ti qzcfc ivrqvfqwmvd icddtaf vnc fzncay vry wrqcddwxcrq crtgxzhgq kgfq fcrfcdcffrcff, vry v jcmgdwvn rvqwtrvd itns ti wq.
+
+When I took that blob of text and used this online tool:
+https://www.dcode.fr/monoalphabetic-substitution
+
+This is the result I got:
+CONGRATS HERE IS YOUR FLAG - FREQUENCY_IS_C_OVER_LAMBDA_OGFMAUNRAF ------------------------------------------------------------------------------- ALEXEY FYODOROVITCH KARAMAZOV WAS THE THIRD SON OF FYODOR PAVLOVITCH KARAMAZOV, A LAND OWNER WELL KNOWN IN OUR DISTRICT IN HIS OWN DAY, AND STILL REMEMBERED AMONG US OWING TO HIS GLOOMY AND TRAGIC DEATH, WHICH HAPPENED THIRTEEN YEARS AGO, AND WHICH I SHALL DESCRIBE IN ITS PROPER PLACE. FOR THE PRESENT I WILL ONLY SAY THAT THIS LANDOWNERFOR SO WE USED TO CALL HIM, ALTHOUGH HE HARDLY SPENT A DAY OF HIS LIFE ON HIS OWN ESTATEWAS A STRANGE TYPE, YET ONE PRETTY FREQUENTLY TO BE MET WITH, A TYPE ABJECT AND VICIOUS AND AT THE SAME TIME SENSELESS. BUT HE WAS ONE OF THOSE SENSELESS PERSONS WHO ARE VERY WELL CAPABLE OF LOOKING AFTER THEIR WORLDLY AFFAIRS, AND, APPARENTLY, AFTER NOTHING ELSE. FYODOR PAVLOVITCH, FOR INSTANCE, BEGAN WITH NEXT TO NOTHING; HIS ESTATE WAS OF THE SMALLEST; HE RAN TO DINE AT OTHER MEN'S TABLES, AND FASTENED ON THEM AS A TOADY, YET AT HIS DEATH IT APPEARED THAT HE HAD A HUNDRED THOUSAND ROUBLES IN HARD CASH. AT THE SAME TIME, HE WAS ALL HIS LIFE ONE OF THE MOST SENSELESS, FANTASTICAL FELLOWS IN THE WHOLE DISTRICT. I REPEAT, IT WAS NOT STUPIDITYTHE MAJORITY OF THESE FANTASTICAL FELLOWS ARE SHREWD AND INTELLIGENT ENOUGHBUT JUST SENSELESSNESS, AND A PECULIAR NATIONAL FORM OF IT.
+
+The flag is in the first line, but needs to be lowercased:
+frequency_is_c_over_lambda_ogfmaunraf
