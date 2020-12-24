@@ -19,5 +19,5 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision 'shell', inline: $initscript
 
-  config.vm.synced_folder '../../', '/home/vagrant/desktop/sync', owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder '../../', '/home/vagrant/Desktop/sync', owner: 'vagrant', group: 'vagrant'
 end
