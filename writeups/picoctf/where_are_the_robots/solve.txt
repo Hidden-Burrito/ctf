@@ -1,0 +1,15 @@
+This challenge:
+https://play.picoctf.org/practice/challenge/4?category=1&page=1
+
+With this description:
+Can you find the robots? https://jupiter.challenges.picoctf.org/problem/36474/ (link) or http://jupiter.challenges.picoctf.org:36474
+
+Asked me to find the robots. Robots.txt is where a web site can tell search engines what pages to not look at and index. It can be found here:
+https://jupiter.challenges.picoctf.org/problem/36474/robots.txt
+
+The contents of the robots.txt shows to not index /477ce.html
+User-agent: *
+Disallow: /477ce.html
+
+Here is the page where the flag can be found:
+https://jupiter.challenges.picoctf.org/problem/36474/477ce.html
