@@ -1,0 +1,74 @@
+Calc.exe Challenge
+Given a website. When you go to it, it’s just a simple input box that allows you to type in number and operators and it will produce the mathematical outcomes.
+Exploring…
+Right Click, View Page Source (view-source:http://chall.ctf.bamboofox.tw:13377/?Source)
+What is this link to nowhere? 	<div class="columns is-centered">
+              <a href="/?source"></a>
+        </div>
+Clicked on /?source, since it appeared as a hyperlink (view-source:http://chall.ctf.bamboofox.tw:13377/?source)
+A page opened that had some html on it and a MILE LONG of nested <span> elements all on one line.
+Right Click, Inspect Element
+Now all of the <span> elements appear in a blocky paragraph. Searched for ‘flag’ elements, found nothing.
+Copied the single-line SPAN jumble into a text editor and FORMATTED IT BY HAND. (Note: When Tory did this on his computer, the /?source page was BEAUTIFULLY FORMATTED and he did not have to go through and turn &amp; &lt; and &gt; into & <>.)
+This revealed the source code:
+<code>
+<?php
+error_reporting(0);
+isset($_GET['source']) && die(highlight_file(__FILE__));
+
+function is_safe($query)
+{
+$query = strtolower($query);
+preg_match_all(\"/([a-z_]+)/\", $query, $words);
+$words = $words[0];
+$good = ['abs', 'acos', 'acosh', 'asin', 'asinh', 'atan2', 'atan', 'atanh', 'base_convert', 'bindec', 'ceil', 'cos', 'cosh', 'decbin', 'dechex', 'decoct', 'deg2rad', 'exp', 'floor', 'fmod', 'getrandmax', 'hexdec', 'hypot', 'is_finite', 'is_infinite', 'is_nan', 'lcg_value', 'log10', 'log', 'max', 'min', 'mt_getrandmax', 'mt_rand', 'octdec', 'pi', 'pow', 'rad2deg', 'rand', 'round', 'sin', 'sinh', 'sqrt', 'srand', 'tan', 'tanh', 'ncr', 'npr', 'number_format'];
+$accept_chars = '_abcdefghijklmnopqrstuvwxyz0123456789.!^&|+-*/%()[],';
+$accept_chars = str_split($accept_chars);
+$bad = '';
+for ($i = 0; $i < count($words); $i++) {
+if (strlen($words[$i]) && array_search($words[$i], $good) === false) {
+$bad .= $words[$i] . \" \";
+}
+}
+
+for ($i = 0; $i < strlen($query); $i++) {
+if (array_search($query[$i], $accept_chars) === false) {
+$bad .= $query[$i] . \" \";
+}
+}
+return $bad;
+}
+function safe_eval($code)
+{
+if (strlen($code) > 1024) return \"Expression too long.\";
+$code = strtolower($code);
+$bad = is_safe($code);
+$res = '';
+if (strlen(str_replace(' ', '', $bad)))
+$res = \"I don't like this: \" . $bad;
+else
+eval('$res=' . $code . \";\");
+return $res;
+}
+?>
+</code>
+
+The calculator only accepted letters, and no letters, unless the letters formed the exact word from the accepted $good list.
+Using base_convert we were able to convert arbitrary numbers into words/letters outside of the accepted $good list. 
+base_convert(26137359,10,35) == "hello"
+
+Base 35 is the base system for 35 different symbols (A-Z and 0-9)
+
+The calculator accepted a trailing set of parens, so we were able to execute arbitrary functions
+
+We tried navigating the file system with a nested get current dir, then open current dir, to no avail. the only file present was ‘..’
+
+We tried printing the current environment variables with getenv() but to no avail, no declared variables were present (which was strange, because the code itself actually showed some declared variables… writing this up now I think we may have missed something actually)
+
+We then tried phpinfo which listed out a whole bunch of great stuff like what kind of backend server was being used, but it didn’t give us anything useful.
+
+We then thought we might need to use some kind of database exploit and find the key in the database, but neither us were SQL experts and unsure how the database was configured in php (like using php’s build in db management tools or what) so we ran sqpmal, but that found no vulnerabilities.
+
+With all of our immediately obvious ideas exhausted, and a few hours had passed by, we decided to call it quits and put what we had in the chat for anyone else.
+
+
