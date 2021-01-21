@@ -108,7 +108,7 @@ function safe_eval($code)
 </code>
 
 
-The calculator only accepted letters, and no letters, unless the letters formed the exact word from the accepted $good list.
+The calculator only accepted numbers, and no letters, unless the letters formed the exact word from the accepted $good list.
 
 Using base_convert we were able to convert arbitrary numbers into words/letters outside of the accepted $good list. 
 
