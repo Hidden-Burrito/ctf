@@ -12,9 +12,9 @@ Scrolling to the bottom revealed instructions to add even more cat photos:
 I modified the html in the inspector to duplicate one of the div elements, then modified the img src elements to increase the count of each photo. Sure enough, there were more photos to be added. Images 041 and 042.
 ![042](images/catsExtraImage.png)
 
-## Directory Transversal
-I incorrectly attempted a transversal. Teammate @TClasen corrected me and we wound up with this error message.
-![error message](images/catsTransversal.png)
+## Directory Traversal
+I incorrectly attempted a traversal. Teammate @TClasen corrected me and we wound up with this error message.
+![error message](images/catsTraversal.png)
 
 ----
 I noticed in the inspector that the error message was actually showing up as an image, rather than generated text. @TClasen suggested we examine the network traffic for the error and we discovered the broken image.
